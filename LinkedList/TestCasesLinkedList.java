@@ -122,7 +122,7 @@ public class TestCasesLinkedList {
                 node = node.next;
             }
 
-            if (nodesWithoutLastElement.contains(n4) == true) {
+            if (nodesWithoutLastElement.contains(n4) == true || list.tail.value == 4) {
                 throw new Exception();
             }
 
@@ -186,7 +186,7 @@ public class TestCasesLinkedList {
 
             list.removeAll(1);
 
-            if (list.head.value != 5) {
+            if (list.head.value != 5 || list.tail.value != 5) {
                 throw new Exception();
             }
 
@@ -329,7 +329,7 @@ public class TestCasesLinkedList {
                 node = node.next;
             }
 
-            if (correctListInsertLast.equals(listInsertLast) != true) {
+            if (correctListInsertLast.equals(listInsertLast) != true || list.tail.value != 6) {
                 throw new Exception();
             }
 

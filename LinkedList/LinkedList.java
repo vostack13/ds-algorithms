@@ -49,19 +49,32 @@ public class LinkedList
             return false;
         }
 
-        if (this.head.value == _value) {
-            this.head = this.head.next;
-            return true;
-        }
-
+        boolean isRemoved = false;
         Node node = this.head;
+        Node previewNode = null;
 
         while (node != null) {
-            if (node.next != null && node.next.value == _value) {
-                node.next = node.next.next;
-                return true;
+            if (node.value != _value) {
+                previewNode = node;
+            } else {
+                if (previewNode == null) {
+                    this.head = node.next;
+                } else {
+                    previewNode.next = node.next;
+                }
+
+                if (node.next == null) {
+                    this.tail = previewNode;
+                }
+
+                isRemoved = true;
+                break;
             }
             node = node.next;
+        }
+
+        if (isRemoved) {
+            return true;
         }
 
         return false;
@@ -83,6 +96,10 @@ public class LinkedList
                     this.head = node.next;
                 } else {
                     previewNode.next = node.next;
+                }
+
+                if (node.next == null) {
+                    this.tail = previewNode;
                 }
             }
 
@@ -124,6 +141,10 @@ public class LinkedList
 
         while (node != null) {
             if (node == _nodeAfter) {
+                if (node.next == null) {
+                    this.tail = _nodeToInsert;
+                }
+
                 _nodeToInsert.next = node.next;
                 node.next = _nodeToInsert;
                 return;
