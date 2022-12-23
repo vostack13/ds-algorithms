@@ -2,14 +2,14 @@ import java.util.*;
 
 public class LinkedList
 {
-     public Node head;
-     public Node tail;
+    public Node head;
+    public Node tail;
 
-     public LinkedList()
-     {
-       head = null;
-       tail = null;
-     }
+    public LinkedList()
+    {
+        head = null;
+        tail = null;
+    }
 
     public void addInTail(Node item) {
         if (this.head == null)
@@ -31,48 +31,115 @@ public class LinkedList
 
     public ArrayList<Node> findAll(int _value) {
         ArrayList<Node> nodes = new ArrayList<Node>();
-        // здесь будет ваш код поиска всех узлов 
+        Node node = this.head;
+
+        while (node != null) {
+            if (node.value == _value) {
+                nodes.add(node);
+            }
+            node = node.next;
+        }
+
         return nodes;
-     }
+    }
 
-     public boolean remove(int _value)
-     {
-       // здесь будет ваш код удаления одного узла по заданному значению
-       return true; // если узел был удалён
-     }
+    public boolean remove(int _value)
+    {
+        if (this.head == null) {
+            return false;
+        }
 
-     public void removeAll(int _value)
-     {
-      // здесь будет ваш код удаления всех узлов по заданному значению
-     }
+        if (this.head.value == _value) {
+            this.head = this.head.next;
+            return true;
+        }
 
-     public void clear()
-     {
-      // здесь будет ваш код очистки всего списка
-     }
+        Node node = this.head;
 
-     public int count()
-     {
-       return 0; // здесь будет ваш код подсчёта количества элементов в списке
-     }
+        while (node != null) {
+            if (node.next != null && node.next.value == _value) {
+                node.next = node.next.next;
+                return true;
+            }
+            node = node.next;
+        }
 
-     public void insertAfter(Node _nodeAfter, Node _nodeToInsert)
-     {
-       // здесь будет ваш код вставки узла после заданного
+        return false;
+    }
 
-       // если _nodeAfter = null , 
-       // добавьте новый элемент первым в списке      
-     }
+    public void removeAll(int _value)
+    {
+        if (this.head == null)
+            return;
 
+        Node node = this.head;
+        Node previewNode = null;
+
+        while (node != null) {
+            if (node.value != _value) {
+                previewNode = node;
+            } else {
+                if (previewNode == null) {
+                    this.head = node.next;
+                } else {
+                    previewNode.next = node.next;
+                }
+            }
+
+            node = node.next;
+        }
+    }
+
+    public void clear()
+    {
+        this.head = null;
+        this.tail = null;
+    }
+
+    public int count()
+    {
+        Node node = this.head;
+        int count = 0;
+
+        while (node != null) {
+            count++;
+            node = node.next;
+        }
+        return count;
+    }
+
+    public void insertAfter(Node _nodeAfter, Node _nodeToInsert)
+    {
+        if (_nodeToInsert == null) {
+            return;
+        }
+
+        if (_nodeAfter == null) {
+            _nodeToInsert.next = this.head;
+            this.head = _nodeToInsert;
+            return;
+        }
+
+        Node node = this.head;
+
+        while (node != null) {
+            if (node == _nodeAfter) {
+                _nodeToInsert.next = node.next;
+                node.next = _nodeToInsert;
+                return;
+            }
+            node = node.next;
+        }
+    }
 }
 
 class Node
 {
-     public int value;
-     public Node next;
-     public Node(int _value) 
-     {  
-       value = _value;
-       next = null;
-     }
+    public int value;
+    public Node next;
+    public Node(int _value)
+    {
+        value = _value;
+        next = null;
+    }
 }
