@@ -333,8 +333,13 @@ public class TestCasesLinkedList {
                 throw new Exception();
             }
 
+            LinkedList listEmpty = new LinkedList();
+
+            listEmpty.insertAfter(null, new Node(1));
+
             System.out.println(title + "success");
         } catch (Exception e) {
+            System.out.println(e);
             System.out.println(title + "failed");
         }
     }
