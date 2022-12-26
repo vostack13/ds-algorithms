@@ -125,10 +125,6 @@ public class LinkedList2 {
     }
 
     public void insertAfter(Node _nodeAfter, Node _nodeToInsert) {
-        // здесь будет ваш код вставки узла после заданного узла
-
-        // если _nodeAfter = null
-        // добавьте новый элемент первым в списке
         if (_nodeToInsert == null) {
             return;
         }
