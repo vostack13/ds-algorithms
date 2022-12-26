@@ -17,7 +17,7 @@ public class Program {
         // LinkedListUtils utils = new LinkedListUtils();
         // utils.run(list1, list2);
 
-        TestCasesLinkedList2 test2 = new TestCasesLinkedList2();
+        LinkedList2Test test2 = new LinkedList2Test();
         test2.run();
     }
 }
