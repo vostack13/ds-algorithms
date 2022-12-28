@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 
-public class TestCasesLinkedList {
+public class LinkedListTest {
     private Node n1;
     private Node n2;
     private Node n3;
 
-    public TestCasesLinkedList() {
+    public LinkedListTest() {
         n1 = new Node(1);
         n2 = new Node(2);
         n3 = new Node(3);
