@@ -23,7 +23,16 @@ public class Program {
         // LinkedListUtils utils = new LinkedListUtils();
         // utils.run(list1, list2);
 
-        LinkedList2Test test2 = new LinkedList2Test();
-        test2.run();
+        // LinkedList2Test test2 = new LinkedList2Test();
+        // test2.run();
+
+    //     System.out.println();
+    //     DynArray array = new DynArray<Integer>(Integer.class);
+
+    //     DynArrayTest dynArrayTest = new DynArrayTest();
+    //     dynArrayTest.run();
+    
+        StackTest stackTest = new StackTest();
+        stackTest.run();
     }
 }

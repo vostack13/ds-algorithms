@@ -32,7 +32,7 @@ public class Stack<T> {
     }
 }
 
-class LinkedListAll<T> {
+class LinkedListAll<T> extends LinkedList2 {
     public NodeList<T> head;
     public NodeList<T> tail;
 
@@ -63,7 +63,7 @@ class LinkedListAll<T> {
         this.head.prev = null;
         this.head = this.head.next;
 
-        if (this.head == null) {
+        if (this.head == null)  {
             this.tail = null;
 
             return;
