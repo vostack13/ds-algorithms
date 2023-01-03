@@ -25,22 +25,6 @@ public class StackUtils {
         return isBalanced;
     }
 
-    private Integer addition(Integer val1, Integer val2) throws Exception {
-        if (val1 == null || val2 == null) {
-            throw new Exception("Invalid expression entry");
-        }
-
-        return val1 + val2;
-    }
-
-    private Integer multiply(Integer val1, Integer val2) throws Exception {
-        if (val1 == null || val2 == null) {
-            throw new Exception("Invalid expression entry");
-        }
-
-        return val1 * val2;
-    }
-
     public int calculation(String expression) throws Exception {
         Integer result = 0;
         Integer operator1, operator2;
@@ -96,5 +80,21 @@ public class StackUtils {
         }
 
         return result;
+    }
+
+    private Integer addition(Integer val1, Integer val2) throws Exception {
+        if (val1 == null || val2 == null) {
+            throw new Exception("Invalid expression entry");
+        }
+
+        return val1 + val2;
+    }
+
+    private Integer multiply(Integer val1, Integer val2) throws Exception {
+        if (val1 == null || val2 == null) {
+            throw new Exception("Invalid expression entry");
+        }
+
+        return val1 * val2;
     }
 }
