@@ -32,7 +32,7 @@ public class Stack<T> {
     }
 }
 
-class LinkedListAll<T> extends LinkedList2 {
+class LinkedListAll<T> {
     public NodeList<T> head;
     public NodeList<T> tail;
 
