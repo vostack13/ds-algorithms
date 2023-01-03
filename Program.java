@@ -1,3 +1,5 @@
+import javax.swing.undo.StateEdit;
+
 public class Program {
 
     public static void main(String args[]) {
@@ -20,10 +22,13 @@ public class Program {
         // LinkedList2Test test2 = new LinkedList2Test();
         // test2.run();
 
-        System.out.println();
-        DynArray array = new DynArray<Integer>(Integer.class);
+    //     System.out.println();
+    //     DynArray array = new DynArray<Integer>(Integer.class);
 
-        DynArrayTest dynArrayTest = new DynArrayTest();
-        dynArrayTest.run();
+    //     DynArrayTest dynArrayTest = new DynArrayTest();
+    //     dynArrayTest.run();
+    
+        StackTest stackTest = new StackTest();
+        stackTest.run();
     }
 }
