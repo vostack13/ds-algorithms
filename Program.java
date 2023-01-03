@@ -30,5 +30,12 @@ public class Program {
     
         StackTest stackTest = new StackTest();
         stackTest.run();
-    }
+        
+        StackUtils stackUtils = new StackUtils();
+        System.out.println("1: " + stackUtils.getIsBalanced("())("));
+        System.out.println("2: " + stackUtils.getIsBalanced("))(("));
+        System.out.println("3: " + stackUtils.getIsBalanced("((())"));
+        System.out.println("4: " + stackUtils.getIsBalanced("(()()(()"));
+        System.out.println("5: " + stackUtils.getIsBalanced("(()((())()))"));
+     }
 }

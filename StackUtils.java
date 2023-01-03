@@ -5,16 +5,23 @@ public class StackUtils {
     public boolean getIsBalanced(String value) {
         boolean isBalanced = false;
         Stack<Character> stack = new Stack<Character>();
+        Character currentStackValue;
 
         for (char c: value.toCharArray()) {
-           if (stack.peek() != c) {
+            currentStackValue = stack.peek();
+
+            if (currentStackValue != null && currentStackValue != c && c == ')') {
+                stack.pop();
+                continue;
+            }
+
             stack.push(c);
-           } else {
-            stack.pop();
-           }
         }
 
-         
+        if (stack.size() == 0) {
+            isBalanced = true;
+        }
+
         return isBalanced;
     }
 }
