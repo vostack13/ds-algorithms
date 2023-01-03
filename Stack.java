@@ -63,7 +63,7 @@ class LinkedListAll<T> extends LinkedList2 {
         this.head.prev = null;
         this.head = this.head.next;
 
-        if (this.head == null)  {
+        if (this.head == null) {
             this.tail = null;
 
             return;
