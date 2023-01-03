@@ -28,14 +28,21 @@ public class Program {
     //     DynArrayTest dynArrayTest = new DynArrayTest();
     //     dynArrayTest.run();
     
-        StackTest stackTest = new StackTest();
-        stackTest.run();
+        // StackTest stackTest = new StackTest();
+        // stackTest.run();
         
         StackUtils stackUtils = new StackUtils();
-        System.out.println("1: " + stackUtils.getIsBalanced("())("));
-        System.out.println("2: " + stackUtils.getIsBalanced("))(("));
-        System.out.println("3: " + stackUtils.getIsBalanced("((())"));
-        System.out.println("4: " + stackUtils.getIsBalanced("(()()(()"));
-        System.out.println("5: " + stackUtils.getIsBalanced("(()((())()))"));
+        // System.out.println("1: " + stackUtils.getIsBalanced("())("));
+        // System.out.println("2: " + stackUtils.getIsBalanced("))(("));
+        // System.out.println("3: " + stackUtils.getIsBalanced("((())"));
+        // System.out.println("4: " + stackUtils.getIsBalanced("(()()(()"));
+        // System.out.println("5: " + stackUtils.getIsBalanced("(()((())()))"));
+        
+        try {
+            Integer calculatorResult = stackUtils.calculation("8 2 + 5 * 9 + =");
+            System.out.println(calculatorResult);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
      }
 }
