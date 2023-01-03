@@ -21,6 +21,7 @@ public class LinkedList2 {
         this.tail = _item;
     }
 
+    
     public Node find(int _value) {
         Node findNode = null;
 
