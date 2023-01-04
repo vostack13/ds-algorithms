@@ -2,6 +2,9 @@ import javax.swing.undo.StateEdit;
 
 public class Program {
 
+    /**
+     * @param args
+     */
     public static void main(String args[]) {
         // TestCasesLinkedList test = new TestCasesLinkedList();
         // test.run();
@@ -31,18 +34,21 @@ public class Program {
         // StackTest stackTest = new StackTest();
         // stackTest.run();
         
-        StackUtils stackUtils = new StackUtils();
+        // StackUtils stackUtils = new StackUtils();
         // System.out.println("1: " + stackUtils.getIsBalanced("())("));
         // System.out.println("2: " + stackUtils.getIsBalanced("))(("));
         // System.out.println("3: " + stackUtils.getIsBalanced("((())"));
         // System.out.println("4: " + stackUtils.getIsBalanced("(()()(()"));
         // System.out.println("5: " + stackUtils.getIsBalanced("(()((())()))"));
         
-        try {
-            Double calculatorResult = stackUtils.calculation("8 2 + 5 * 9 + 9 - 70 - 3 / =");
-            System.out.println(calculatorResult);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        // try {
+        //     Double calculatorResult = stackUtils.calculation("8 2 + 5 * 9 + 9 - 70 - 3 / =");
+        //     System.out.println(calculatorResult);
+        // } catch (Exception e) {
+        //     e.printStackTrace();
+        // }
+        
+        QueueTest queueTest = new QueueTest();
+        queueTest.run();
      }
 }
