@@ -39,7 +39,7 @@ public class Program {
         // System.out.println("5: " + stackUtils.getIsBalanced("(()((())()))"));
         
         try {
-            Integer calculatorResult = stackUtils.calculation("8 2 + 5 * 9 + =");
+            Double calculatorResult = stackUtils.calculation("8 2 + 5 * 9 + 9 - 70 - 3 / =");
             System.out.println(calculatorResult);
         } catch (Exception e) {
             e.printStackTrace();

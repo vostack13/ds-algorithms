@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class StackUtils {
     public StackUtils() {
     }
@@ -25,12 +27,12 @@ public class StackUtils {
         return isBalanced;
     }
 
-    public int calculation(String expression) throws Exception {
-        Integer result = 0;
-        Integer operator1, operator2;
+    public double calculation(String expression) throws Exception {
+        Double result = 0.0;
+        Double operator1, operator2;
         String currentValue = "";
         Stack<String> s1 = new Stack<String>();
-        Stack<Integer> s2 = new Stack<Integer>();
+        Stack<Double> s2 = new Stack<Double>();
         char[] chars = expression.toCharArray();
 
         for (int i = chars.length - 1; i >= 0; i--) {
@@ -51,50 +53,61 @@ public class StackUtils {
         while (s1.size() > 0) {
             currentValue = s1.pop();
 
-            switch (currentValue) {
-            case "+":
-                operator2 = s2.pop();
-                operator1 = s2.pop();
-                result = this.addition(operator1, operator2);
-                s2.push(result);
-                continue;
-            case "*":
-                operator2 = s2.pop();
-                operator1 = s2.pop();
-                result = this.multiply(operator1, operator2);
-                s2.push(result);
-                continue;
-            case "=":
+            if (Objects.equals(currentValue, "=")) {
                 result = s2.peek();
-                continue;
-            default:
                 break;
             }
 
             try {
-                int value = Integer.valueOf(currentValue);
+                Double value = Double.valueOf(currentValue);
                 s2.push(value);
+                continue;
             } catch (Exception e) {
+            }
+
+            operator2 = s2.pop();
+            operator1 = s2.pop();
+
+            if (operator1 == null || operator2 == null) {
+                throw new Exception("Invalid expression entry");
+            }
+
+            switch (currentValue) {
+            case "+":
+                result = this.addition(operator1, operator2);
+                break;
+            case "*":
+                result = this.multiply(operator1, operator2);
+                break;
+            case "-":
+                result = this.subtraction(operator1, operator2);
+                break;
+            case "/":
+                result = this.division(operator1, operator2);
+                break;
+            default:
                 throw new Exception("The operator is not supported");
             }
+
+            s2.push(result);
         }
 
         return result;
     }
 
-    private Integer addition(Integer val1, Integer val2) throws Exception {
-        if (val1 == null || val2 == null) {
-            throw new Exception("Invalid expression entry");
-        }
-
+    private Double addition(Double val1, Double val2) {
         return val1 + val2;
     }
 
-    private Integer multiply(Integer val1, Integer val2) throws Exception {
-        if (val1 == null || val2 == null) {
-            throw new Exception("Invalid expression entry");
-        }
-
+    private Double multiply(Double val1, Double val2) {
         return val1 * val2;
+    }
+
+    private Double subtraction(Double val1, Double val2) {
+        return val1 - val2;
+    }
+
+    private Double division(Double val1, Double val2) {
+        return val1 / val2;
     }
 }
