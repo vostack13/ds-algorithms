@@ -45,7 +45,9 @@ class LinkedListByDeque<T> {
     private int count;
 
     public LinkedListByDeque() {
-        this.head = null;
+        this.head = new NodeByDeque<T>(null, null, null);
+        this.head.next = this.head;
+        this.head.prev = this.head;
         this.count = 0;
     }
 
