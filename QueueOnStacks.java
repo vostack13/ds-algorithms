@@ -12,23 +12,16 @@ public class QueueOnStacks<T> {
     }
 
     public T dequeue() {
-        this.moveToStackOut();
+        if (this.stackOut.size() == 0) {
+            while (this.stackIn.size() > 0) {
+                this.stackOut.push(this.stackIn.pop());
+            }
+        }
 
         return this.stackOut.pop();
     }
     
     public int size() {
         return this.stackIn.size() + this.stackOut.size();
-    }
-
-    private void moveToStackOut() {
-        if (this.stackOut.size() > 0) {
-            return;
-        }
-
-        while (this.stackIn.size() > 0) {
-            T item = this.stackIn.pop();
-            this.stackOut.push(item);
-        }
     }
 }
