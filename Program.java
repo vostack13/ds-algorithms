@@ -59,8 +59,8 @@ public class Program {
         queue.enqueue(3);
         queue.enqueue(4);
         queue.enqueue(5);
-        // queueUtils.circleRotateQueue(queue);
-        
+        queueUtils.circleRotateQueue(queue, 9);
+
         QueueOnStacks<Integer> queueOnStacks = new QueueOnStacks<Integer>();
         queueOnStacks.enqueue(1);
         queueOnStacks.enqueue(2);
