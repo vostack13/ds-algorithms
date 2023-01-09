@@ -36,7 +36,7 @@ public class Deque<T> {
     }
 
     public int size() {
-        return this.size;
+        return this.list.size();
     }
 }
 
