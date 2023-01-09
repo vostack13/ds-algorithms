@@ -8,17 +8,17 @@ public class Deque<T> {
     }
 
     public void addFront(T item) {
-        this.list.addHead(item);
+        this.list.addTail(item);
     }
 
     public void addTail(T item) {
-        this.list.addTail(item);
+        this.list.addHead(item);
     }
 
     public T removeFront() {
         if (this.list.size() > 0) {
-            T value = this.list.getHeadValue();
-            this.list.removeHead();
+            T value = this.list.getTailValue();
+            this.list.removeTail();
             return value;
         }
 
@@ -27,8 +27,8 @@ public class Deque<T> {
 
     public T removeTail() {
         if (this.list.size() > 0) {
-            T value = this.list.getTailValue();
-            this.list.removeTail();
+            T value = this.list.getHeadValue();
+            this.list.removeHead();
             return value;
         }
 
