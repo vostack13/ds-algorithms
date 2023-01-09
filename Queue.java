@@ -23,6 +23,10 @@ public class Queue<T> {
     public int size() {
         return this.list.count();
     }
+
+    public void print() {
+        this.list.print();
+    }
 }
 
 class QueueLinkedList<T> {
@@ -95,6 +99,20 @@ class QueueLinkedList<T> {
 
     public T getFirstItem() {
         return this.head.value;
+    }
+    
+    public void print() {
+        QueueNodeList<T> node = this.head;
+
+        System.out.print("{");
+
+        while (node != null) {
+            System.out.print(" " + node.value + " ");
+            node = node.next;
+        }
+
+        System.out.print("}");
+        System.out.println();
     }
 }
 
