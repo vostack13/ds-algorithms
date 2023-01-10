@@ -49,7 +49,38 @@ public class Program {
         //     e.printStackTrace();
         // }
         
-        QueueTest queueTest = new QueueTest();
-        queueTest.run();
+        // QueueTest queueTest = new QueueTest();
+        // queueTest.run();
+
+        // QueueUtils queueUtils = new QueueUtils();
+        // Queue<Integer> queue = new Queue<Integer>();
+
+        // queue.enqueue(1);
+        // queue.enqueue(2);
+        // queue.enqueue(3);
+        // queue.enqueue(4);
+        // queue.enqueue(5);
+        // // queueUtils.circleRotateQueue(queue);
+        // 
+        // QueueOnStacks<Integer> queueOnStacks = new QueueOnStacks<Integer>();
+        // queueOnStacks.enqueue(1);
+        // queueOnStacks.enqueue(2);
+        // queueOnStacks.enqueue(3);
+        // queueOnStacks.enqueue(4);
+        // queueOnStacks.enqueue(5);
+        // 
+        // System.out.println(queueOnStacks.size());
+        // System.out.println(queueOnStacks.dequeue());
+        // System.out.println(queueOnStacks.size());
+        // System.out.println(queueOnStacks.dequeue());
+        // System.out.println(queueOnStacks.size());
+        // System.out.println(queueOnStacks.dequeue());
+        // System.out.println(queueOnStacks.size());
+        // System.out.println(queueOnStacks.dequeue());
+        // System.out.println(queueOnStacks.size());
+        // System.out.println(queueOnStacks.dequeue());
+        // System.out.println(queueOnStacks.size());
+        // System.out.println(queueOnStacks.dequeue());
+        // System.out.println(queueOnStacks.size());
      }
 }
