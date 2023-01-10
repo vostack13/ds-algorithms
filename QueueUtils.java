@@ -3,9 +3,8 @@ public class QueueUtils {
     }
 
     public <T> void circleRotateQueue(Queue<T> queue, int count) {
-        while (count != 0) {
+        for (int i = 0; i < count; i++) {
             queue.enqueue(queue.dequeue());
-            count--;
         }
     }
 }
