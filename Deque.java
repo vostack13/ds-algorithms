@@ -17,8 +17,8 @@ public class Deque<T> {
 
     public T removeFront() {
         if (this.list.size() > 0) {
-            T value = this.list.getHeadValue();
-            this.list.removeHead();
+            T value = this.list.getTailValue();
+            this.list.removeTail();
             return value;
         }
 
