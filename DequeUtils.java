@@ -10,10 +10,10 @@ public class DequeUtils {
         }
 
         while (deque.size() > 1) {
-            char firstChar = deque.removeFront();            
-            char lastChar = deque.removeTail();
+            char a = deque.removeFront();
+            char b = deque.removeTail();
 
-            if (firstChar != lastChar) {
+            if (a != b) {
                 return false;
             }
         }
