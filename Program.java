@@ -82,5 +82,10 @@ public class Program {
         // System.out.println(queueOnStacks.size());
         // System.out.println(queueOnStacks.dequeue());
         // System.out.println(queueOnStacks.size());
+        
+        DequeUtils dequeUtils = new DequeUtils();
+        System.out.println(dequeUtils.isPalindrome("banana"));
+        System.out.println(dequeUtils.isPalindrome("banab"));
+        System.out.println(dequeUtils.isPalindrome("b"));
      }
 }
