@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 import javax.swing.undo.StateEdit;
 
 public class Program {
@@ -82,9 +84,23 @@ public class Program {
         // System.out.println(queueOnStacks.dequeue());
         // System.out.println(queueOnStacks.size());
         
-        DequeUtils dequeUtils = new DequeUtils();
-        System.out.println(dequeUtils.isPalindrome("banana"));
-        System.out.println(dequeUtils.isPalindrome("banab"));
-        System.out.println(dequeUtils.isPalindrome("b"));
+        // DequeUtils dequeUtils = new DequeUtils();
+        // System.out.println(dequeUtils.isPalindrome("banana"));
+        // System.out.println(dequeUtils.isPalindrome("banab"));
+        // System.out.println(dequeUtils.isPalindrome("b"));
+        
+        // OrderedList<Integer> orderedList = new OrderedList<Integer>(true);
+        // OrderedList<Integer> orderedList = new OrderedList<Integer>(false);
+        // orderedList.add(10);
+        // orderedList.add(4);
+        // orderedList.add(2);
+        // orderedList.add(3);
+        // orderedList.add(6);
+
+        // orderedList.print();
+
+        // orderedList.delete(4);
+        // orderedList.print();
+        // System.out.print("find: " + v.value);
      }
 }
