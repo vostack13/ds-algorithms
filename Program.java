@@ -99,7 +99,11 @@ public class Program {
         // orderedList.print();
 
         // orderedList.delete(4);
-        // orderedList.print();
         // System.out.print("find: " + v.value);
+        
+       //  OrderedList<String> orderedList = new OrderedList<String>(false);
+       //  orderedList.add("ac");
+       //  orderedList.add("b");
+       //  orderedList.add("abc");
      }
 }
