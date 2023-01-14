@@ -28,15 +28,38 @@ import java.util.*;
 
     public int compare(T v1, T v2)
     {
-        Integer a = (Integer) v1;
-        Integer b = (Integer) v2;
-        
-        if (a < b) {
-            return -1;
+        if (v1 instanceof Integer && v2 instanceof Integer) {
+            Integer a = (Integer) v1;
+            Integer b = (Integer) v2;
+            
+            if (a < b) {
+                return -1;
+            }
+
+            if (a > b) {
+                return 1;
+            }
         }
 
-        if (a > b) {
-            return 1;
+        if (v1 instanceof String && v2 instanceof String) {
+            String str1 = (String) v1;
+            String str2 = (String) v2;
+            str1.trim();
+            str2.trim();
+            int length = str1.length() > str2.length() ? str1.length() : str2.length();
+
+            for (int i = 0; i < length; i++) {
+                char char1 = str1.charAt(i);
+                char char2 = str2.charAt(i);
+
+                if (char1 < char2) {
+                    return -1;
+                }
+
+                if (char1 > char2) {
+                    return 1;
+                }
+            }
         }
 
       return 0;
