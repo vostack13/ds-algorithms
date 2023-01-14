@@ -10,10 +10,7 @@ public class DequeUtils {
         }
 
         while (deque.size() > 1) {
-            char a = deque.removeFront();
-            char b = deque.removeTail();
-
-            if (a != b) {
+            if (deque.removeFront() != deque.removeTail()) {
                 return false;
             }
         }
