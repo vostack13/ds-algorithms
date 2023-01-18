@@ -87,8 +87,18 @@ public class Program {
         // System.out.println(dequeUtils.isPalindrome("banab"));
         // System.out.println(dequeUtils.isPalindrome("b"));
 
-        // HashTable hashTable = new HashTable(12, 10);
+        HashTable hashTable = new HashTable(2, 3);
 
-        // System.out.println(hashTable.hashFun("b"));
+        System.out.println(hashTable.find("t"));
+        System.out.println(hashTable.put("t"));
+        System.out.println(hashTable.find("t"));
+
+        System.out.println(hashTable.find("a"));
+        System.out.println(hashTable.put("a"));
+        System.out.println(hashTable.find("a"));
+
+        System.out.println(hashTable.find("b"));
+        System.out.println(hashTable.put("b"));
+        System.out.println(hashTable.find("b"));
      }
 }
