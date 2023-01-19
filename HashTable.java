@@ -21,6 +21,10 @@ public class HashTable
             h = (h * step + x) % this.size;
         }
 
+        if (h < 0) {
+            h = h * -1;
+        }
+
         return h;
     }
 
