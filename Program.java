@@ -102,5 +102,37 @@ public class Program {
         // System.out.println(hashTable.find("b"));
         // System.out.println(hashTable.put("b"));
         // System.out.println(hashTable.find("b"));
+
+        // NativeDictionary<Integer> dictionary = new NativeDictionary<>(5, Integer.class);
+        // System.out.println(dictionary.isKey("abc"));
+
+        // System.out.println(dictionary.get("abc"));
+        // dictionary.put("abc", 123);
+        // System.out.println(dictionary.get("abc"));
+
+        // System.out.println(dictionary.get("!"));
+        // dictionary.put("!", 5);
+        // System.out.println(dictionary.get("!"));
+
+        // dictionary.put("!", 154);
+        // System.out.println(dictionary.get("!"));
+
+        
+        
+        // dictionary.put("2", 2);
+        // System.out.println(dictionary.get("2"));
+
+        // System.out.println(dictionary.isKey("abc"));
+        // dictionary.put("3", 3);
+        // System.out.println(dictionary.get("3"));
+
+        // dictionary.put("4", 4);
+        // System.out.println(dictionary.get("4"));
+
+        // dictionary.put("5", 5);
+        // System.out.println(dictionary.get("5"));
+
+        // dictionary.put("5", 5);
+        // System.out.println(dictionary.get("5"));
      }
 }
