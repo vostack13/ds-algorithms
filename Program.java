@@ -1,5 +1,3 @@
-import javax.swing.undo.StateEdit;
-
 public class Program {
 
     /**
@@ -134,5 +132,31 @@ public class Program {
 
         // dictionary.put("5", 5);
         // System.out.println(dictionary.get("5"));
+        // HashTable hashTable = new HashTable(12, 10);
+
+        // System.out.println(hashTable.hashFun("abc"));
+
+        // PowerSet powerSetA = new PowerSet();
+        // PowerSet powerSetB = new PowerSet();
+        // 
+        // int size = 20000;
+        // 
+        // for (int i = 0; i < size; i++) {
+        //     String value = Integer.toString(i);
+        //     powerSetA.put(value);
+        //     powerSetB.put(value);
+        // }
+
+        // powerSetA.remove("1");
+        // powerSetA.remove("2");
+        // powerSetA.remove("3");
+
+        // PowerSet powerSetIntersection = powerSetA.intersection(powerSetB);
+        // powerSetIntersection.print();
+
+        // PowerSet powerSetUnion = powerSetA.union(powerSetB);
+
+        // PowerSet powerSetDifference = powerSetB.difference(powerSetA);
+        // powerSetDifference.print();
      }
 }
