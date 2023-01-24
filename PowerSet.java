@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class PowerSet {
     public HashTableByPowerSet storage;
 
@@ -24,10 +22,6 @@ public class PowerSet {
     }
 
     public PowerSet intersection(PowerSet set2) {
-        if (set2 == null) {
-            return null;
-        }
-
         PowerSet resultSet = new PowerSet();
         PowerSet smallSet = this.size() >= set2.size() ? set2 : this;
         PowerSet bigSet = this.size() >= set2.size() ? this : set2;
@@ -46,21 +40,15 @@ public class PowerSet {
             return resultSet;
         }
 
-        return resultSet;
+        return null;
     }
 
     public PowerSet union(PowerSet set2) {
-        if (set2 == null) {
-            return null;
-        }
-
         PowerSet resultSet = new PowerSet();
         PowerSet smallSet = this.size() >= set2.size() ? set2 : this;
         PowerSet bigSet = this.size() >= set2.size() ? this : set2;
 
-        resultSet.assign(bigSet);
-
-        for (String value : smallSet.storage.slots) {
+        for (String value : bigSet.storage.slots) {
             if (value == null) {
                 continue;
             }
@@ -68,20 +56,33 @@ public class PowerSet {
             resultSet.put(value);
         }
 
+        for (String value : smallSet.storage.slots) {
+            if (value == null) {
+                continue;
+            }
+
+            if (!resultSet.get(value)) {
+                resultSet.put(value);
+            }
+        }
+
         if (resultSet.size() > 0) {
             return resultSet;
         }
 
-        return resultSet;
+        return null;
     }
 
     public PowerSet difference(PowerSet set2) {
-        if (set2 == null) {
-            return null;
-        }
-
         PowerSet resultSet = new PowerSet();
-        resultSet.assign(this);
+
+        for (String value : this.storage.slots) {
+            if (value == null) {
+                continue;
+            }
+
+            resultSet.put(value);
+        }
 
         for (String value : set2.storage.slots) {
             if (value == null) {
@@ -95,14 +96,10 @@ public class PowerSet {
             return resultSet;
         }
 
-        return resultSet;
+        return null;
     }
 
     public boolean isSubset(PowerSet set2) {
-        if (set2 == null) {
-            return false;
-        }
-
         for (String value : set2.storage.slots) {
             if (value == null) {
                 continue;
@@ -116,19 +113,16 @@ public class PowerSet {
         return true;
     }
 
-    public void assign(PowerSet assignSet) {
-        this.storage.assign(assignSet.storage);
-    }
+    public void copyUniqValues(PowerSet powerSet, boolean condition) {
+        for (String value : powerSet.storage.slots) {
+            if (value == null) {
+                continue;
+            }
 
-    public ArrayList<String> getArrayList() {
-        ArrayList<String> list = new ArrayList<String>();
-        
-        for (int i = 0; i < this.storage.slots.length; i++) {
-            if (this.storage.slots[i] != null) {
-                list.add(this.storage.slots[i]);
+            if (condition) {
+                powerSet.put(value);
             }
         }
-        return list;
     }
 }
 
@@ -144,13 +138,18 @@ class HashTableByPowerSet {
         this.size = sz;
         this.step = stp;
         this.slots = new String[sz];
+        this.hashSalt = (int) ('a' + 1);
     }
 
     public int getHash(String value) {
         int hash = 0;
 
         for (char c : value.toCharArray()) {
-            hash = (hash * this.step + c) % this.size;
+            hash = (hash * this.step + c - this.hashSalt) % this.size;
+        }
+
+        if (hash < 0) {
+            hash = hash * -1;
         }
 
         return hash;
@@ -161,25 +160,20 @@ class HashTableByPowerSet {
 
         for (int i = 0; i < this.size; i++) {
             if (this.slots[hash] == null) {
-                break;
+                return hash;
             }
 
             if (value.equals(this.slots[hash])) {
-                hash = -1;
-                break;
+                return -1;
             }
 
             hash = (hash + this.step) % this.size;
         }
 
-        return hash;
+        return -1;
     }
 
     public void putUniq(String value) {
-        if (value == null) {
-            return;
-        }
-
         int hash = this.getUniqiValueSlot(value);
 
         if (hash != -1) {
@@ -189,12 +183,9 @@ class HashTableByPowerSet {
     }
 
     public int findKey(String value) {
-        if (value == null) {
-            return -1;
-        }
         int hash = this.getHash(value);
 
-        for (int i = 0; i < this.step; i++) {
+        for (int i = 0; i < this.size; i++) {
             if (value.equals(this.slots[hash])) {
                 return hash;
             }
@@ -206,10 +197,6 @@ class HashTableByPowerSet {
     }
 
     public boolean remove(String value) {
-        if (value == null) {
-            return false;
-        }
-        
         int hash = this.findKey(value);
 
         if (hash != -1) {
@@ -231,14 +218,6 @@ class HashTableByPowerSet {
             if (condition) {
                 hashTable.putUniq(value);
             }
-        }
-    }
-
-    public void assign(HashTableByPowerSet hashTable) {
-        this.count = hashTable.count;
-
-        for (int i = 0; i < slots.length; i++) {
-            this.slots[i] = hashTable.slots[i];
         }
     }
 }
