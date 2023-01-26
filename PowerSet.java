@@ -2,7 +2,7 @@ public class PowerSet {
     public HashTableByPowerSet storage;
 
     public PowerSet() {
-        this.storage = new HashTableByPowerSet(2000000, 256);
+        this.storage = new HashTableByPowerSet(200000, 256);
     }
 
     public int size() {
