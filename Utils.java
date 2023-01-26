@@ -19,7 +19,7 @@ public class Utils {
 
             for (int i = 0; i < powerSet.storage.size; i++) {
                 if (powerSet.storage.slots[i] != null) {
-                    System.out.print(powerSet.storage.slots[i] + ", ");
+                    System.out.print(powerSet.storage.slots[i] + "(" + i + "), ");
                 }
             }
 

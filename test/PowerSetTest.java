@@ -11,6 +11,8 @@ public class PowerSetTest {
         PowerSet powerSetC = new PowerSet();
         PowerSet powerSetD = new PowerSet();
 
+        System.out.println("test: " + powerSetD.size());
+
         int size = 20000;
 
         long start = System.currentTimeMillis();
@@ -76,7 +78,34 @@ public class PowerSetTest {
         System.out.println("time: " + (double) ((end - start) / 1) + " ms");
     }
 
+    public void remove() {
+        PowerSet powerSetC = new PowerSet();
+
+        powerSetC.put("a");
+        powerSetC.put("b");
+        powerSetC.put("c");
+        // powerSetC.put("d");
+        // powerSetC.put("e");
+
+        utils.printValues(powerSetC);
+        System.out.println("remove size: " + powerSetC.size());
+
+        // powerSetC.remove("a");
+
+        // System.out.println("remove size: " + powerSetC.size());
+
+        powerSetC.remove("a");
+        powerSetC.remove("b");
+        powerSetC.remove("c");
+        // powerSetC.remove("d");
+        // powerSetC.remove("e");
+        
+        System.out.println("remove size: " + powerSetC.size());
+        utils.printValues(powerSetC);
+    }
+
     public void run() {
         this.union();
+        this.remove();
     }
 }

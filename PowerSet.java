@@ -125,22 +125,19 @@ class HashTableByPowerSet {
     public int hashSalt;
     public int count;
     public String[] slots;
-    public long colis;
 
     public HashTableByPowerSet(int sz, int stp) {
         this.count = 0;
         this.size = sz;
         this.step = stp;
         this.slots = new String[sz];
-        this.hashSalt = (int) ('a' + 1);
-        this.colis = 0;
     }
 
     public int getHash(String value) {
         int hash = 0;
 
         for (char c : value.toCharArray()) {
-            hash = (hash * this.step + c - this.hashSalt) % this.size;
+            hash = (hash * this.step + c - 'a' + 1) % this.size;
         }
 
         if (hash < 0) {
@@ -161,8 +158,6 @@ class HashTableByPowerSet {
             if (value.equals(this.slots[hash])) {
                 return -1;
             }
-
-            this.colis++;
 
             hash = (hash + this.step) % this.size;
         }
