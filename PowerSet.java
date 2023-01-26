@@ -22,6 +22,10 @@ public class PowerSet {
     }
 
     public PowerSet intersection(PowerSet set2) {
+        if (set2 == null) {
+            return null;
+        }
+
         PowerSet resultSet = new PowerSet();
         PowerSet smallSet = this.size() >= set2.size() ? set2 : this;
         PowerSet bigSet = this.size() >= set2.size() ? this : set2;
@@ -44,26 +48,22 @@ public class PowerSet {
     }
 
     public PowerSet union(PowerSet set2) {
+        if (set2 == null) {
+            return null;
+        }
+
         PowerSet resultSet = new PowerSet();
         PowerSet smallSet = this.size() >= set2.size() ? set2 : this;
         PowerSet bigSet = this.size() >= set2.size() ? this : set2;
 
-        for (String value : bigSet.storage.slots) {
-            if (value == null) {
-                continue;
-            }
-
-            resultSet.put(value);
-        }
+        resultSet.assign(bigSet);
 
         for (String value : smallSet.storage.slots) {
             if (value == null) {
                 continue;
             }
 
-            if (!resultSet.get(value)) {
-                resultSet.put(value);
-            }
+            resultSet.put(value);
         }
 
         if (resultSet.size() > 0) {
@@ -74,15 +74,12 @@ public class PowerSet {
     }
 
     public PowerSet difference(PowerSet set2) {
-        PowerSet resultSet = new PowerSet();
-
-        for (String value : this.storage.slots) {
-            if (value == null) {
-                continue;
-            }
-
-            resultSet.put(value);
+        if (set2 == null) {
+            return null;
         }
+
+        PowerSet resultSet = new PowerSet();
+        resultSet.assign(this);
 
         for (String value : set2.storage.slots) {
             if (value == null) {
@@ -100,6 +97,10 @@ public class PowerSet {
     }
 
     public boolean isSubset(PowerSet set2) {
+        if (set2 == null) {
+            return false;
+        }
+
         for (String value : set2.storage.slots) {
             if (value == null) {
                 continue;
@@ -113,16 +114,8 @@ public class PowerSet {
         return true;
     }
 
-    public void copyUniqValues(PowerSet powerSet, boolean condition) {
-        for (String value : powerSet.storage.slots) {
-            if (value == null) {
-                continue;
-            }
-
-            if (condition) {
-                powerSet.put(value);
-            }
-        }
+    public void assign(PowerSet assignSet) {
+        this.storage.assign(assignSet.storage);
     }
 }
 
@@ -132,6 +125,7 @@ class HashTableByPowerSet {
     public int hashSalt;
     public int count;
     public String[] slots;
+    public long colis;
 
     public HashTableByPowerSet(int sz, int stp) {
         this.count = 0;
@@ -139,6 +133,7 @@ class HashTableByPowerSet {
         this.step = stp;
         this.slots = new String[sz];
         this.hashSalt = (int) ('a' + 1);
+        this.colis = 0;
     }
 
     public int getHash(String value) {
@@ -167,6 +162,8 @@ class HashTableByPowerSet {
                 return -1;
             }
 
+            this.colis++;
+
             hash = (hash + this.step) % this.size;
         }
 
@@ -175,7 +172,6 @@ class HashTableByPowerSet {
 
     public void putUniq(String value) {
         int hash = this.getUniqiValueSlot(value);
-
         if (hash != -1) {
             this.slots[hash] = value;
             this.count++;
@@ -186,6 +182,10 @@ class HashTableByPowerSet {
         int hash = this.getHash(value);
 
         for (int i = 0; i < this.size; i++) {
+            if (this.slots[hash] == null) {
+                return -1;
+            }
+
             if (value.equals(this.slots[hash])) {
                 return hash;
             }
@@ -218,6 +218,14 @@ class HashTableByPowerSet {
             if (condition) {
                 hashTable.putUniq(value);
             }
+        }
+    }
+
+    public void assign(HashTableByPowerSet hashTable) {
+        this.count = hashTable.count;
+
+        for (int i = 0; i < slots.length; i++) {
+            this.slots[i] = hashTable.slots[i];
         }
     }
 }
