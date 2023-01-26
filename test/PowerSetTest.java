@@ -11,7 +11,7 @@ public class PowerSetTest {
         PowerSet powerSetC = new PowerSet();
         PowerSet powerSetD = new PowerSet();
 
-        int size = 20000;
+        int size = 200000;
 
         long start = System.currentTimeMillis();
         
