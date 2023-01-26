@@ -137,11 +137,7 @@ class HashTableByPowerSet {
         int hash = 0;
 
         for (char c : value.toCharArray()) {
-            hash = (hash * this.step + c - 'a' + 1) % this.size;
-        }
-
-        if (hash < 0) {
-            hash = hash * -1;
+            hash = (hash * this.step + c) % this.size;
         }
 
         return hash;
@@ -152,17 +148,18 @@ class HashTableByPowerSet {
 
         for (int i = 0; i < this.size; i++) {
             if (this.slots[hash] == null) {
-                return hash;
+                break;
             }
 
             if (value.equals(this.slots[hash])) {
-                return -1;
+                hash = -1;
+                break;
             }
 
             hash = (hash + this.step) % this.size;
         }
 
-        return -1;
+        return hash;
     }
 
     public void putUniq(String value) {
@@ -176,11 +173,7 @@ class HashTableByPowerSet {
     public int findKey(String value) {
         int hash = this.getHash(value);
 
-        for (int i = 0; i < this.size; i++) {
-            if (this.slots[hash] == null) {
-                return -1;
-            }
-
+        for (int i = 0; i < this.step; i++) {
             if (value.equals(this.slots[hash])) {
                 return hash;
             }

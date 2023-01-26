@@ -80,6 +80,20 @@ public class PowerSetTest {
 
     public void remove() {
         PowerSet powerSetC = new PowerSet();
+        PowerSet powerSetA = new PowerSet();
+
+        int size = 20000;
+        String [] list = new String[size];
+
+        for (int i = 0; i < size; i++) {
+            String value = utils.getRandomSting();
+            list[i] = value;
+            powerSetA.put(value);
+        }
+
+        for (int i = 0; i < size; i++) {
+            powerSetA.remove(list[i]);
+        }
 
         powerSetC.put("a");
         powerSetC.put("b");
@@ -101,7 +115,24 @@ public class PowerSetTest {
         // powerSetC.remove("e");
         
         System.out.println("remove size: " + powerSetC.size());
-        utils.printValues(powerSetC);
+        // utils.printValues(powerSetC);
+
+        // utils.printValues(powerSetA);
+        // System.out.println("remove: " + list[0]);
+        // System.out.println("remove: " + list[1]);
+        // System.out.println("remove: " + list[2]);
+        // System.out.println("remove: " + list[3]);
+        // System.out.println("remove: " + list[4]);
+        // System.out.println("remove: " + list[5]);
+        // powerSetA.remove(list[0]);
+        // powerSetA.remove(list[1]);
+        // powerSetA.remove(list[2]);
+        // powerSetA.remove(list[3]);
+        // powerSetA.remove(list[4]);
+        // powerSetA.remove(list[5]);
+        
+        utils.printValues(powerSetA);
+        utils.printSize(powerSetA);
     }
 
     public void run() {

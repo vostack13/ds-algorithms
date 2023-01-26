@@ -15,11 +15,11 @@ public class Utils {
         if (data instanceof PowerSet) {
             PowerSet powerSet = (PowerSet) data;
 
-            System.out.print("{ ");
+            System.out.println("{ ");
 
             for (int i = 0; i < powerSet.storage.size; i++) {
                 if (powerSet.storage.slots[i] != null) {
-                    System.out.print(powerSet.storage.slots[i] + "(" + i + "), ");
+                    System.out.println("    (" + i + ") - " + powerSet.storage.slots[i] );
                 }
             }
 
