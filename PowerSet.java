@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class PowerSet {
     public HashTableByPowerSet storage;
 
@@ -117,6 +119,17 @@ public class PowerSet {
     public void assign(PowerSet assignSet) {
         this.storage.assign(assignSet.storage);
     }
+
+    public ArrayList<String> getArrayList() {
+        ArrayList<String> list = new ArrayList<String>();
+        
+        for (int i = 0; i < this.storage.slots.length; i++) {
+            if (this.storage.slots[i] != null) {
+                list.add(this.storage.slots[i]);
+            }
+        }
+        return list;
+    }
 }
 
 class HashTableByPowerSet {
@@ -163,7 +176,12 @@ class HashTableByPowerSet {
     }
 
     public void putUniq(String value) {
+        if (value == null) {
+            return;
+        }
+
         int hash = this.getUniqiValueSlot(value);
+
         if (hash != -1) {
             this.slots[hash] = value;
             this.count++;
@@ -171,6 +189,9 @@ class HashTableByPowerSet {
     }
 
     public int findKey(String value) {
+        if (value == null) {
+            return -1;
+        }
         int hash = this.getHash(value);
 
         for (int i = 0; i < this.step; i++) {
@@ -185,6 +206,10 @@ class HashTableByPowerSet {
     }
 
     public boolean remove(String value) {
+        if (value == null) {
+            return false;
+        }
+        
         int hash = this.findKey(value);
 
         if (hash != -1) {

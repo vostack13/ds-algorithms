@@ -1,142 +1,298 @@
+import java.util.ArrayList;
+
 public class PowerSetTest {
     Utils utils;
-    
+
     public PowerSetTest() {
         this.utils = new Utils();
     }
 
-    public void union() {
-        PowerSet powerSetA = new PowerSet();
-        PowerSet powerSetB = new PowerSet();
-        PowerSet powerSetC = new PowerSet();
-        PowerSet powerSetD = new PowerSet();
+    public void run() {
+        this.put();
+        this.remove();
+        this.intersection();
+        this.union();
+        this.difference();
+        this.isSubset();
+    }
 
-        System.out.println("test: " + powerSetD.size());
-
-        int size = 20000;
-
-        long start = System.currentTimeMillis();
-        
-        for (int i = 0; i < size; i++) {
-            String value = utils.getRandomSting();
-            powerSetA.put(value);
-        }
-
-        for (int i = 0; i < size; i++) {
-            String value = utils.getRandomSting();
-            powerSetB.put(value);
-        }
-
-        powerSetC.put("a");
-        powerSetC.put("b");
-        powerSetC.put("c");
-        powerSetC.put("d");
-        powerSetC.put("e");
-
-        powerSetD.put("f");
-        powerSetD.put("g");
-        powerSetD.put("c");
-        powerSetD.put("b");
-        powerSetD.put("b");
-        powerSetD.put("y");
-        powerSetD.put("x");
-        
-        PowerSet powerSetIntersection = powerSetA.intersection(powerSetB);
-        PowerSet powerSetUnion = powerSetA.union(powerSetB);
-        PowerSet powerSetDifference = powerSetB.difference(powerSetA);
-
-        PowerSet manualSetIntersection = powerSetC.intersection(powerSetD);
-        PowerSet manualSetUnion = powerSetC.union(powerSetD);
-        PowerSet manualSetDifference = powerSetD.difference(powerSetC);
-
-        long end = System.currentTimeMillis();
-
-        utils.printSize(powerSetIntersection);
-        utils.printSize(powerSetUnion);
-        utils.printSize(powerSetDifference);
-        System.out.println(powerSetA.isSubset(powerSetUnion));
-
-        System.out.println();
-
-        utils.printValues(powerSetC);
-        utils.printSize(powerSetC);
-
-        utils.printValues(powerSetD);
-        utils.printSize(powerSetD);
-
-        utils.printValues(manualSetIntersection);
-        utils.printSize(manualSetIntersection);
-
-        utils.printValues(manualSetUnion);
-        utils.printSize(manualSetUnion);
-
-        utils.printValues(manualSetDifference);
-        utils.printSize(manualSetDifference);
-
-        System.out.println(powerSetD.isSubset(manualSetIntersection));
-
-        System.out.println("time: " + (double) ((end - start) / 1) + " ms");
+    public void put() {
+        this.putItems();
     }
 
     public void remove() {
-        PowerSet powerSetC = new PowerSet();
-        PowerSet powerSetA = new PowerSet();
-
-        int size = 20000;
-        String [] list = new String[size];
-
-        for (int i = 0; i < size; i++) {
-            String value = utils.getRandomSting();
-            list[i] = value;
-            powerSetA.put(value);
-        }
-
-        for (int i = 0; i < size; i++) {
-            powerSetA.remove(list[i]);
-        }
-
-        powerSetC.put("a");
-        powerSetC.put("b");
-        powerSetC.put("c");
-        // powerSetC.put("d");
-        // powerSetC.put("e");
-
-        utils.printValues(powerSetC);
-        System.out.println("remove size: " + powerSetC.size());
-
-        // powerSetC.remove("a");
-
-        // System.out.println("remove size: " + powerSetC.size());
-
-        powerSetC.remove("a");
-        powerSetC.remove("b");
-        powerSetC.remove("c");
-        // powerSetC.remove("d");
-        // powerSetC.remove("e");
-        
-        System.out.println("remove size: " + powerSetC.size());
-        // utils.printValues(powerSetC);
-
-        // utils.printValues(powerSetA);
-        // System.out.println("remove: " + list[0]);
-        // System.out.println("remove: " + list[1]);
-        // System.out.println("remove: " + list[2]);
-        // System.out.println("remove: " + list[3]);
-        // System.out.println("remove: " + list[4]);
-        // System.out.println("remove: " + list[5]);
-        // powerSetA.remove(list[0]);
-        // powerSetA.remove(list[1]);
-        // powerSetA.remove(list[2]);
-        // powerSetA.remove(list[3]);
-        // powerSetA.remove(list[4]);
-        // powerSetA.remove(list[5]);
-        
-        utils.printValues(powerSetA);
-        utils.printSize(powerSetA);
+        this.removeSubset();
+        this.removeAll();
     }
 
-    public void run() {
-        this.union();
-        this.remove();
+    public void intersection() {
+        this.intersectionEmpty();
+        this.intersectionSomeItems();
+    }
+
+    public void union() {
+        this.unionSomeItems();
+        this.unionWithEmptySet();
+    }
+
+    public void difference() {
+        this.differenceSomeItems();
+        this.differenceEmptySet();
+    }
+
+    public void isSubset() {
+        this.isSubsetIncludes();
+        this.isSubsetNotIncludes();
+    }
+
+    public void putItems() {
+        PowerSetTestData testData = new PowerSetTestData(20000);
+        boolean result = false;
+
+        PowerSet powerSetA = new PowerSet();
+
+        for (int i = 0; i < testData.listAll.size(); i++) {
+            powerSetA.put(testData.listAll.get(i));
+        }
+
+        if (testData.listUniq.size() == powerSetA.getArrayList().size()) {
+            result = true;
+        }
+
+        System.out.println("put(): added items: " + result);
+    }
+
+    public void removeSubset() {
+        PowerSetTestData testData = new PowerSetTestData(20000);
+        PowerSet powerSetA = new PowerSet();
+        boolean result;
+
+        for (int i = 0; i < testData.listAll.size(); i++) {
+            powerSetA.put(testData.listAll.get(i));
+        }
+
+        for (int i = 0; i < testData.listSubset.size(); i++) {
+            powerSetA.remove(testData.listSubset.get(i));
+        }
+
+        ArrayList<String> actualsList = powerSetA.getArrayList();
+        result = testData.listAfterRemove.containsAll(actualsList)
+                && testData.listAfterRemove.size() == actualsList.size();
+        System.out.println("remove() — removed subset: " + result);
+        
+        result = actualsList.size() == powerSetA.size();
+        System.out.println("size(): " + result);
+    }
+
+    public void removeAll() {
+        PowerSetTestData testData = new PowerSetTestData(20000);
+        PowerSet powerSetA = new PowerSet();
+        boolean result;
+
+        for (int i = 0; i < testData.listAll.size(); i++) {
+            powerSetA.put(testData.listAll.get(i));
+        }
+
+        for (int i = 0; i < testData.listUniq.size(); i++) {
+            powerSetA.remove(testData.listUniq.get(i));
+        }
+
+        ArrayList<String> actualsList = powerSetA.getArrayList();
+        result = actualsList.size() == 0;
+        System.out.println("remove() — removed all items: " + result);
+        
+        result = actualsList.size() == powerSetA.size();
+        System.out.println("size(): " + result);
+    }
+
+    public void intersectionEmpty() {
+        PowerSetTestData testData = new PowerSetTestData(20000);
+        PowerSet powerSetA = new PowerSet();
+        PowerSet powerSetB = new PowerSet();
+        int size = testData.listUniq.size();
+        int middleList = (int) size / 2;
+        boolean result;
+
+        for (int i = 0; i < middleList; i++) {
+            powerSetA.put(testData.listUniq.get(i));
+        }
+
+        for (int i = middleList; i < size; i++) {
+            powerSetB.put(testData.listUniq.get(i));
+        }
+
+        PowerSet actualsSet = powerSetA.intersection(powerSetB);
+        result = actualsSet == null;
+        System.out.println("intersection() — generate empty set: " + result);
+    }
+
+    public void intersectionSomeItems() {
+        PowerSetTestData testData = new PowerSetTestData(20000);
+        PowerSet powerSetA = new PowerSet();
+        PowerSet powerSetB = new PowerSet();
+        boolean result;
+
+        for (int i = 0; i < testData.listUniq.size(); i++) {
+            powerSetA.put(testData.listUniq.get(i));
+        }
+
+        for (int i = 0; i < testData.listSubset.size(); i++) {
+            powerSetB.put(testData.listSubset.get(i));
+        }
+
+        PowerSet actualsSet = powerSetA.intersection(powerSetB);
+        ArrayList<String> actualList = actualsSet.getArrayList();
+        result = testData.listSubset.size() == actualList.size() && testData.listSubset.containsAll(actualList);
+        System.out.println("intersection() — generate some set: " + result);
+
+        result = actualList.size() == actualsSet.size();
+        System.out.println("size(): " + result);
+    }
+
+    public void unionSomeItems() {
+        PowerSetTestData testData = new PowerSetTestData(20000);
+        PowerSet powerSetA = new PowerSet();
+        PowerSet powerSetB = new PowerSet();
+        boolean result;
+
+        for (int i = 0; i < testData.listAfterRemove.size(); i++) {
+            powerSetA.put(testData.listAfterRemove.get(i));
+        }
+
+        for (int i = 0; i < testData.listSubset.size(); i++) {
+            powerSetB.put(testData.listSubset.get(i));
+        }
+
+        PowerSet actualsSet = powerSetA.union(powerSetB);
+        ArrayList<String> actualList = actualsSet.getArrayList();
+        result = testData.listUniq.size() == actualList.size() && testData.listUniq.containsAll(actualList);
+        System.out.println("union() — generate some set: " + result);
+
+        result = actualList.size() == actualsSet.size();
+        System.out.println("size(): " + result);
+    }
+
+    public void unionWithEmptySet() {
+        PowerSetTestData testData = new PowerSetTestData(20000);
+        PowerSet powerSetA = new PowerSet();
+        PowerSet powerSetB = new PowerSet();
+        boolean result;
+
+        for (int i = 0; i < testData.listSubset.size(); i++) {
+            powerSetA.put(testData.listSubset.get(i));
+        }
+
+        PowerSet actualsSetA = powerSetA.union(powerSetB);
+        PowerSet actualsSetB = powerSetB.union(powerSetA);
+        ArrayList<String> actualListA = actualsSetA.getArrayList();
+        ArrayList<String> actualListB = actualsSetB.getArrayList();
+        result = testData.listSubset.size() == actualListA.size() && testData.listSubset.size() == actualListB.size()
+                && testData.listSubset.containsAll(actualListA) && testData.listSubset.containsAll(actualListB);
+        System.out.println("union() — generate from empty set: " + result);
+
+        result = actualListA.size() == actualsSetA.size() && actualListA.size() == actualsSetA.size();
+        System.out.println("size(): " + result);
+    }
+
+    public void differenceSomeItems() {
+        PowerSetTestData testData = new PowerSetTestData(20000);
+        PowerSet powerSetA = new PowerSet();
+        PowerSet powerSetB = new PowerSet();
+        boolean result;
+
+        for (int i = 0; i < testData.listUniq.size(); i++) {
+            powerSetA.put(testData.listUniq.get(i));
+        }
+
+        for (int i = 0; i < testData.listSubset.size(); i++) {
+            powerSetB.put(testData.listSubset.get(i));
+        }
+
+        PowerSet actualsSet = powerSetA.difference(powerSetB);
+        ArrayList<String> actualList = actualsSet.getArrayList();
+        result = testData.listAfterRemove.size() == actualList.size() && testData.listAfterRemove.size() == actualList.size();
+        System.out.println("difference() — generate some set: " + result);
+
+        result = actualList.size() == actualsSet.size();
+        System.out.println("size(): " + result);
+    }
+
+    public void differenceEmptySet() {
+        PowerSetTestData testData = new PowerSetTestData(20000);
+        PowerSet powerSetA = new PowerSet();
+        PowerSet powerSetB = new PowerSet();
+        boolean result;
+
+        for (int i = 0; i < testData.listUniq.size(); i++) {
+            powerSetA.put(testData.listUniq.get(i));
+        }
+
+        for (int i = 0; i < testData.listSubset.size(); i++) {
+            powerSetB.put(testData.listSubset.get(i));
+        }
+
+        PowerSet actualsSet = powerSetB.difference(powerSetA);
+        result = actualsSet == null;
+        System.out.println("difference() — generate empty set: " + result);
+    }
+
+    public void isSubsetIncludes() {
+        PowerSetTestData testData = new PowerSetTestData(20000);
+        PowerSet powerSetA = new PowerSet();
+        PowerSet powerSetB = new PowerSet();
+        PowerSet powerSetD = new PowerSet();
+        boolean result;
+
+        for (int i = 0; i < testData.listUniq.size(); i++) {
+            powerSetA.put(testData.listUniq.get(i));
+        }
+
+        for (int i = 0; i < testData.listSubset.size(); i++) {
+            powerSetB.put(testData.listSubset.get(i));
+        }
+
+        for (int i = 0; i < testData.listSubset.size(); i++) {
+            powerSetB.put(testData.listSubset.get(i));
+        }
+
+        boolean actualA = powerSetA.isSubset(powerSetB);
+        boolean actualB = powerSetB.isSubset(powerSetD);
+        result = actualA == true && actualB == true;
+        System.out.println("isSubset() — subset is included in the set: " + result);
+    }
+
+    public void isSubsetNotIncludes() {
+        PowerSetTestData testData = new PowerSetTestData(20000);
+        PowerSet powerSetA = new PowerSet();
+        PowerSet powerSetB = new PowerSet();
+        boolean result;
+
+        for (int i = 0; i < testData.listAfterRemove.size(); i++) {
+            powerSetA.put(testData.listAfterRemove.get(i));
+        }
+
+        for (int i = 0; i < testData.listSubset.size(); i++) {
+            powerSetB.put(testData.listSubset.get(i));
+        }
+
+        boolean actual = powerSetA.isSubset(powerSetB);
+        result = actual == false;
+        System.out.println("isSubset() — subset is not included in the set: " + result);
+    }
+}
+
+class PowerSetTestData {
+    public ArrayList<String> listAll;
+    public ArrayList<String> listUniq;
+    public ArrayList<String> listSubset;
+    public ArrayList<String> listAfterRemove;
+    Utils utils;
+
+    public PowerSetTestData(int size) {
+        this.utils = new Utils();
+        this.listAll = this.utils.getRandomStingList(size);
+        this.listUniq = this.utils.getUniqList(this.listAll);
+        this.listSubset = this.utils.getRandomSubsetList(listUniq);
+        this.listAfterRemove = this.utils.getDifferenceList(listUniq, listSubset);
     }
 }
