@@ -46,7 +46,7 @@ public class PowerSet {
             return resultSet;
         }
 
-        return null;
+        return resultSet;
     }
 
     public PowerSet union(PowerSet set2) {
@@ -72,7 +72,7 @@ public class PowerSet {
             return resultSet;
         }
 
-        return null;
+        return resultSet;
     }
 
     public PowerSet difference(PowerSet set2) {
@@ -95,7 +95,7 @@ public class PowerSet {
             return resultSet;
         }
 
-        return null;
+        return resultSet;
     }
 
     public boolean isSubset(PowerSet set2) {

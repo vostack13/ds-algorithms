@@ -28,6 +28,7 @@ public class PowerSetTest {
     public void intersection() {
         this.intersectionEmpty();
         this.intersectionSomeItems();
+        this.intersectionWithEmpty();
     }
 
     public void union() {
@@ -122,7 +123,8 @@ public class PowerSetTest {
         }
 
         PowerSet actualsSet = powerSetA.intersection(powerSetB);
-        result = actualsSet == null;
+        ArrayList<String> actualList = actualsSet.getArrayList();
+        result = actualsSet.size() == 0 && actualList.size() == 0;
         System.out.println("intersection() — generate empty set: " + result);
     }
 
@@ -147,6 +149,22 @@ public class PowerSetTest {
 
         result = actualList.size() == actualsSet.size();
         System.out.println("size(): " + result);
+    }
+
+    public void intersectionWithEmpty() {
+        PowerSetTestData testData = new PowerSetTestData(20000);
+        PowerSet powerSetA = new PowerSet();
+        PowerSet powerSetB = new PowerSet();
+        boolean result;
+
+        for (int i = 0; i < testData.listUniq.size(); i++) {
+            powerSetA.put(testData.listUniq.get(i));
+        }
+
+        PowerSet actualsSet = powerSetA.intersection(powerSetB);
+        ArrayList<String> actualList = actualsSet.getArrayList();
+        result = actualsSet.size() == 0 && actualList.size() == 0;
+        System.out.println("intersection() — generate some set with empty: " + result);
     }
 
     public void unionSomeItems() {
@@ -232,7 +250,8 @@ public class PowerSetTest {
         }
 
         PowerSet actualsSet = powerSetB.difference(powerSetA);
-        result = actualsSet == null;
+        ArrayList<String> actualList = actualsSet.getArrayList();
+        result = actualsSet.size() == 0 && actualList.size() == 0;
         System.out.println("difference() — generate empty set: " + result);
     }
 
