@@ -135,7 +135,78 @@ public class Program {
         // HashTable hashTable = new HashTable(12, 10);
 
         // System.out.println(hashTable.hashFun("abc"));
-           PowerSetTest powerSetTest = new PowerSetTest();
-           powerSetTest.run();
+        //    PowerSetTest powerSetTest = new PowerSetTest();
+        //    powerSetTest.run();
+
+        BloomFilter bloom = new BloomFilter(32);
+        String str0 = "0123456789";
+        String str1 = "1234567890";
+        String str2 = "2345678901";
+        String str3 = "3456789012";
+        String str4 = "4567890123";
+        String str5 = "5678901234";
+        String str6 = "6789012345";
+        String str7 = "7890123456";
+        String str8 = "8901234567";
+        String str9 = "9012345678";
+
+        System.out.println(str0 + ": " + bloom.isValue(str0));
+        bloom.add(str0);
+        System.out.println(str0 + ": " + bloom.isValue(str0));
+        
+        System.out.println();
+        System.out.println(str1 + ": " + bloom.isValue(str1));
+        bloom.add(str1);
+        System.out.println(str1 + ": " + bloom.isValue(str1));
+
+        System.out.println();
+        System.out.println(str2 + ": " + bloom.isValue(str2));
+        bloom.add(str2);
+        System.out.println(str2 + ": " + bloom.isValue(str2));
+
+        System.out.println();
+        System.out.println(str3 + ": " + bloom.isValue(str3));
+        bloom.add(str3);
+        System.out.println(str3 + ": " + bloom.isValue(str3));
+
+        System.out.println();
+        System.out.println(str4 + ": " + bloom.isValue(str4));
+        bloom.add(str4);
+        System.out.println(str4 + ": " + bloom.isValue(str4));
+
+        System.out.println();
+        System.out.println(str5 + ": " + bloom.isValue(str5));
+        bloom.add(str5);
+        System.out.println(str5 + ": " + bloom.isValue(str5));
+
+        System.out.println();
+        System.out.println(str6 + ": " + bloom.isValue(str6));
+        bloom.add(str6);
+        System.out.println(str6 + ": " + bloom.isValue(str6));
+
+        System.out.println();
+        System.out.println(str7 + ": " + bloom.isValue(str7));
+        bloom.add(str7);
+        System.out.println(str7 + ": " + bloom.isValue(str7));
+
+        System.out.println();
+        System.out.println(str8 + ": " + bloom.isValue(str8));
+        bloom.add(str8);
+        System.out.println(str8 + ": " + bloom.isValue(str8));
+
+        System.out.println();
+        System.out.println(str9 + ": " + bloom.isValue(str9));
+        bloom.add(str9);
+        System.out.println(str9 + ": " + bloom.isValue(str9));
+
+        System.out.println();
+        System.out.println(": " + bloom.isValue(""));
+        bloom.add("");
+        System.out.println(": " + bloom.isValue(""));
+
+        System.out.println();
+        System.out.println("0: " + bloom.isValue("0"));
+        bloom.add("0");
+        System.out.println("0: " + bloom.isValue("0"));
      }
 }
