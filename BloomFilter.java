@@ -1,10 +1,11 @@
 public class BloomFilter {
     public int filter_len;
-    public byte[] filter;
+    public int filter;
 
     public BloomFilter(int f_len) {
         filter_len = f_len;
-        filter = new byte[f_len];
+        filter = 0;
+
     }
 
     private int hashCommon(String str, int step) {
@@ -31,15 +32,19 @@ public class BloomFilter {
         int idx1 = hash1(str1);
         int idx2 = hash2(str1);
 
-        filter[idx1] |= 1;
-        filter[idx2] |= 1;
+        filter |= 1 << idx1;
+        filter |= 1 << idx2;
+        
     }
 
     public boolean isValue(String str1) {
         int idx1 = hash1(str1);
         int idx2 = hash2(str1);
 
-        if (filter[idx1] == 0 || filter[idx2] == 0) {
+        int r1 = filter & (1 << idx1);
+        int r2 = filter & (1 << idx2);
+
+        if (r1 == 0 || r2 == 0) {
             return false;
         }
 
