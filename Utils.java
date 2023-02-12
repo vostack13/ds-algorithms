@@ -29,6 +29,19 @@ public class Utils {
             
             return;
         }
+
+        if (data instanceof NativeCache) {
+            NativeCache<T> cache = (NativeCache) data;
+            System.out.println("{");
+
+            for (int i = 0; i < cache.values.length; i++) {
+                if (cache.values[i] != null) {
+                    System.out.println("   \"" + cache.slots[i] + "\": " + cache.values[i] );
+                }
+            }
+
+            System.out.println("}");
+        }
     }
 
     public <T> void printSize(T data) {

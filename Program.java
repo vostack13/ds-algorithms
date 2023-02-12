@@ -158,5 +158,22 @@ public class Program {
 
         // PowerSet powerSetDifference = powerSetB.difference(powerSetA);
         // powerSetDifference.print();
+
+        // NativeCache<String> cache = new NativeCache<String>(3, String.class);
+
+        // cache.put("model", "A");
+        // cache.put("brand", "Mercedes-Benz");
+        // cache.put("price", "20000000");
+
+        // cache.get("price");
+        // cache.get("brand");
+
+        // cache.put("shop", "Motor");
+
+        // cache.put("model", "B");
+        // cache.put("model", "C");
+
+        // Utils utils = new Utils();
+        // utils.printValues(cache);
      }
 }
